@@ -22,17 +22,17 @@ class Login extends React.Component{
         username: this.state.username,
         password: this.state.password
       })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.errors){
-          this.setState({
-            errors: data.errors
-          })
-        } else {
-          this.props.loginUser(data.token, data.user_id)
-          this.context.router.history.push(`/profile`)
-        }
-      })
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      if (data.errors){
+        this.setState({
+          errors: data.errors
+        })
+      } else {
+        this.props.loginUser(data.token, data.user_id)
+        this.context.router.history.push(`/profile`)
+      }
     })
   }
 

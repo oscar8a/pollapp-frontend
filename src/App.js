@@ -24,14 +24,14 @@ class App extends React.Component {
 
   render(){
 
-    const userViews = (
-      <div>
-        <Navigation />
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/main" component={Main}/>
-        <Route exact path="/profile" component={Profile}/>
-      </div>
-    )
+    // const userViews = (
+    //   <div>
+    //     <Navigation />
+    //     <Route exact path="/login" component={Login}/>
+    //     <Route exact path="/main" component={Main}/>
+    //     <Route exact path="/profile" component={Profile}/>
+    //   </div>
+    // )
 
 
   return (
@@ -40,6 +40,7 @@ class App extends React.Component {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <Login loginUser={this.loginUser}/>
+      <Main token={ this.state.token } loggedInUserId={ this.state.loggedInUserId } />
     </div>
   );
   }
