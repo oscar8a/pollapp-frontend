@@ -8,6 +8,7 @@ class Main extends React.Component{
   }
 
   componentDidMount(){
+    console.log(this.props)
     const { token } = this.props
 
     fetch("http://localhost:3000/polls", {
@@ -35,13 +36,12 @@ class Main extends React.Component{
   }
 
   render(){
-
     return(<>
     <h1> this is the Main page</h1>
     <section>
       <h2> My Polls </h2>
       <ol>
-        {this.state.allPolls.map(poll => <li key={poll.id}>{ poll.poll_name }</li>)}
+        {this.state.myPolls.map(poll => <li key={poll.id}>{ poll.poll_name }</li>)}
       </ol>
     </section> 
     <section>

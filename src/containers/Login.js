@@ -31,7 +31,7 @@ class Login extends React.Component{
         })
       } else {
         this.props.loginUser(data.token, data.user_id)
-        this.context.router.history.push(`/profile`)
+       // this.context.router.history.push(`/profile`)
       }
     })
   }
