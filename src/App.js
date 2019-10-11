@@ -13,6 +13,16 @@ class App extends React.Component {
     token: null
   }
 
+  componentDidMount(){
+    this.setState({
+      token: localStorage.token
+    })
+  }
+
+  isLoggedIn(){
+    return !!this.state.token
+  }
+
   loginUser = (token, userId) => {
     localStorage.token = token
     localStorage.userId = userId
@@ -22,16 +32,25 @@ class App extends React.Component {
     })
   }
 
+  logOutUser = () => {
+    delete localStorage.token
+    delete localStorage.userId
+    this.setState({
+      token: null,
+      loggedInUserId: null
+    })
+  }
+
   render(){
 
-    const userViews = (
-      <div>
-        <Navigation />
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/main" component={Main}/>
-        <Route exact path="/profile" component={Profile}/>
-      </div>
-    )
+    // const userViews = (
+    //   <div>
+    //     <Navigation />
+    //     <Route exact path="/login" component={Login}/>
+    //     <Route exact path="/main" component={Main}/>
+    //     <Route exact path="/profile" component={Profile}/>
+    //   </div>
+    // )
 
 
   return (
@@ -39,7 +58,16 @@ class App extends React.Component {
       <header>
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <Login loginUser={this.loginUser}/>
+      {
+        this.isLoggedIn()
+        ?
+        <>
+        <button onClick={ this.logOutUser }>LOG OUT</button>
+        <Main token={ this.state.token } loggedInUserId={ this.state.loggedInUserId}/>
+        </>
+        :
+        <Login loginUser={this.loginUser}/>
+      }
     </div>
   );
   }
