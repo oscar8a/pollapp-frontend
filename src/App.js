@@ -8,6 +8,7 @@ import Signup from './containers/Signup';
 import Profile from './containers/Profile';
 import Main from './containers/Main';
 import { Route, NavLink, Switch } from 'react-router-dom'
+import AllPolls from './containers/AllPolls';
 
 class App extends React.Component {
 
@@ -56,16 +57,20 @@ class App extends React.Component {
     // )
 
 
-  return (
+  return (<>
+    <Navigation />
     <div className="App"> 
-      <Navigation />
       <header>
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+      <Switch>
       <Route path="/" exact component={ Login }/>
       <Route path="/login" component={ Login }/>
       <Route path="/signup" component={ Signup }/>
+      <Route path="/profile" component={ Profile }/>
+      <Route path="/polls" component={ AllPolls }/>
       <Route component={ NotFound }/>
+      </Switch>
 
 
       {/* {
@@ -79,6 +84,8 @@ class App extends React.Component {
         <Login loginUser={this.loginUser}/>
       } */}
     </div>
+          
+    </>
   );
   }
 }

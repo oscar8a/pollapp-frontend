@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Menu, Segment } from 'semantic-ui-react'
 
 export default class Navigation extends Component {
@@ -16,13 +17,15 @@ export default class Navigation extends Component {
           <Menu.Item
             name='home'
             active={activeItem === 'home'}
-            onClick={this.handleItemClick}
-          />
+            onClick={this.handleItemClick} >
+            <Link to="/"> Home </Link>
+          </Menu.Item>
           <Menu.Item
             name='profile'
             active={activeItem === 'profile'}
-            onClick={this.handleItemClick}
-          />
+            onClick={this.handleItemClick} >
+            <Link to="/profile"> Profile </Link>
+          </Menu.Item>
           <Menu.Item
             name='logout'
             active={activeItem === 'logout'}
