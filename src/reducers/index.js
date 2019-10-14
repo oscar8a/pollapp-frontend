@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
-import Reducer from './Reducer'
+import pollReducer from './Reducer'
+import AuthReducer from './AuthReducer'
 
-export default combineReducers({
-  poll: Reducer
+const rootReducer = combineReducers({
+  poll: pollReducer,
+  auth: AuthReducer
 })
+
+export default rootReducer;

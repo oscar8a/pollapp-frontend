@@ -15,11 +15,10 @@ import uuid from 'uuid'
 // }
 
 
-const pollReducer = function(state = null, action){
+const pollReducer = function(state = [], action){
   console.log(state)
-  console.log("poll reducer reporting for duty")
-
   console.log(action) 
+  console.log("poll reducer reporting for duty")
 
   switch(action.type) {
     case "FILL_POLLS":
