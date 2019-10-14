@@ -1,14 +1,40 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
+import { signup } from '../actions/AuthActions'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class Signup extends React.Component {
 
   state ={
-    logIn:false,
     username: "",
     email: "",
-    password: "",
-    errors: []
+    password: ""
+  }
+  // state ={
+  //   logIn:false,
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  //   errors: []
+  // }
+
+  onChange = event => {
+    console.log(this.state)
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (this.props.signup(this.state)) {
+      this.props.history.push('profile')
+      window.alert("You have Signed Up!")
+    } else {
+      window.alert("There was an issue creating your account")
+    }
   }
 
   signupSubmit = e => {
@@ -35,16 +61,11 @@ class Signup extends React.Component {
       })
   }
 
-  onChange = event => {
-    console.log(this.state)
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+
 
 render(){
   return(<>
-  <Form onSubmit={this.signupSubmit}>
+  <Form onSubmit={this.handleSubmit}>
     <Form.Field>
       <label>Username</label>
       <input name='username' placeholder='Username' onChange={this.onChange}
@@ -65,4 +86,4 @@ render(){
   </>)
 }
 }
-export default Signup
+export default Signup = withRouter(connect(null, {signup})(Signup));
