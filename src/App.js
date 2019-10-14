@@ -8,6 +8,7 @@ import Signup from './containers/Signup';
 import Profile from './containers/Profile';
 import Main from './containers/Main';
 import { Route, NavLink, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 import AllPolls from './containers/AllPolls';
 
 class App extends React.Component {
@@ -67,6 +68,7 @@ class App extends React.Component {
       <Route path="/signup" component={ Signup }/>
       <Route path="/profile" component={ Profile }/>
       <Route path="/polls" component={ AllPolls }/>
+      <Route exact path="/main" component={Main}/>
       <Route component={ NotFound }/>
       </Switch>
       <button onClick={ this.logOutUser }>LOG OUT</button>
@@ -87,4 +89,11 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.currentUser
+  }
+}
+
+export default App = connect(mapStateToProps, {})(App);

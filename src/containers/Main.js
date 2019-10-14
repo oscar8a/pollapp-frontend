@@ -1,45 +1,48 @@
 import React from 'react'
+import { getUserPolls } from '../actions/PollActions'
+import { connect } from 'react-redux';
 
 class Main extends React.Component{
 
-  state = {
-    allPolls: [],
-    myPolls: []
-  }
+  // state = {
+  //   allPolls: [],
+  //   myPolls: []
+  // }
 
-  componentDidMount(){
-    console.log(this.props)
-    const { token } = this.props
+  // componentDidMount(){
+  //   console.log(this.props)
+  //   const { token } = this.props
 
-    fetch("http://localhost:3000/polls", {
-      headers: {
-        "Authorization": token
-      }
-    }).then(res => res.json())
-    .then(data => this.setState({
-      allPolls: data
-    }))
+  //   fetch("http://localhost:3000/polls", {
+  //     headers: {
+  //       "Authorization": token
+  //     }
+  //   }).then(res => res.json())
+  //   .then(data => this.setState({
+  //     allPolls: data
+  //   }))
 
-    const { loggedInUserId } = this.props
+  //   const { loggedInUserId } = this.props
 
-    if (loggedInUserId){
-      fetch(`http://localhost:3000/users/${loggedInUserId}`, {
-        headers: {
-          "Authorization": token
-        }
-      })
-      .then(res => res.json())
-      .then(user => this.setState({
-        myPolls: user.polls
-      }))
-    }
-  }
+  //   if (loggedInUserId){
+  //     fetch(`http://localhost:3000/users/${loggedInUserId}`, {
+  //       headers: {
+  //         "Authorization": token
+  //       }
+  //     })
+  //     .then(res => res.json())
+  //     .then(user => this.setState({
+  //       myPolls: user.polls
+  //     }))
+  //   }
+  // }
 
   render(){
     return(<>
     <h1> this is the Main page</h1>
     <section>
       <h2> My Polls </h2>
+      {console.log(this.props)}
       <ol>
         {this.state.myPolls.map(poll => <li key={poll.id}>{ poll.poll_name }</li>)}
       </ol>
@@ -54,4 +57,11 @@ class Main extends React.Component{
   }
 
 }
-export default Main
+
+const mapStateToProps = (state) => {
+  return ({
+    users: state.users
+  })
+}
+
+export default connect(mapStateToProps, { getUserPolls })(Main);

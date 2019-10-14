@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import pollReducer from './Reducer'
+import pollReducer from './PollReducer'
 import AuthReducer from './AuthReducer'
 
 const rootReducer = combineReducers({

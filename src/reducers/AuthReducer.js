@@ -5,12 +5,13 @@ const initialState = {
   isAuthenticating: false,
   currentUser: {},
   token: null,
-  errors: []
+  errors: [],
 }
 
 export default (state = initialState, action) => {
-  console.log(state)
-  console.log(action)
+  console.log("auth reducer...")
+  console.log('this is state', state)
+  console.log('this is action', action) 
   
   switch(action.type) {
     case types.AUTHENTICATION_REQUEST:
