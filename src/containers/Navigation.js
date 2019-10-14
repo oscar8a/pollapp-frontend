@@ -29,7 +29,7 @@ export default class Navigation extends Component {
           <Menu.Item
             name='logout'
             active={activeItem === 'logout'}
-            onClick={this.handleItemClick}
+            onClick={ this.props.logOutUser }
           />
         </Menu>
       </Segment>
