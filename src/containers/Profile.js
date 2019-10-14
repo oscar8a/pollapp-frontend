@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { getUserPolls } from '../actions/PollActions'
+import PollCard from './PollCard'
 
 class Profile extends React.Component{
 
@@ -9,24 +8,48 @@ class Profile extends React.Component{
     polls: []
   }
 
-  componentDidMount() {
-    const userpolls = getUserPolls(this.props.user.id)
-  
+  componentDidMount(){
+    console.log(localStorage)
+    console.log(localStorage.userId)
+    console.log(localStorage.token)
+    console.log(this.state)
+    fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+      headers: {
+        "Authorization": localStorage.token
+      }
+    })
+    .then(res => res.json())
+    .then(resp =>   this.setState({
+    user: {username: resp.data.attributes.username, email: resp.data.attributes.email },
+    polls: resp.included
+  }))
   }
+
+  // console.log(resp)
+
+
+
+
+
+   // this.setState({
+    //   user: {username: resp.username, email: resp.email },
+    //   polls: resp.polls
+    // })
 
 
   render(){
 
     return(<>
-      {console.log('Profile this.props.user', this.props.user)}
+      {console.log('Profile this.state', this.state)}
       <h1> this is the Profile page</h1>
-      <h2> {this.props.user.username}</h2>
-
-      {/* <ul>
-        { this.props.polls.map(poll => {
-          return <li>{poll.poll_name}</li>
+      <h2> { this.state.user.username} </h2>
+      <ul>
+        { this.state.polls.map(poll => {
+          return <PollCard pollData={poll} />
         }) }
-      </ul> */}
+      </ul>
+
+      <button> Create new Poll</button>
 
 
 
@@ -36,13 +59,4 @@ class Profile extends React.Component{
 
 }
 
-const mapStateToProps = state => {
-  console.log('mapStateToProps', state)
-
-
-  return({
-    user: state.auth.currentUser
-  })
-}
-
-export default connect(mapStateToProps, { getUserPolls })(Profile);
+export default Profile

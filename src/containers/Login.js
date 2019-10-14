@@ -1,13 +1,11 @@
 import React from 'react'
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
-import { authenticate } from '../actions/AuthActions'
 import { withRouter, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 class Login extends React.Component{
 
   state ={
-    //logIn:false,
+    logIn:false,
     username: "",
     password: "",
     errors: []
@@ -18,18 +16,6 @@ class Login extends React.Component{
     this.setState({
       [event.target.name]: event.target.value
     })
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.props)
-   
-    if (this.props.authenticate(this.state)) {
-      this.props.history.push('/profile')
-      window.alert("You're Logged In!")
-    } else {
-      window.alert("Sorry, something went wrong. Please try logging in again.")
-    }
   }
 
   loginSubmit = e => {
@@ -53,12 +39,10 @@ class Login extends React.Component{
         })
       } else {
         this.props.loginUser(data.token, data.user_id)
-       // this.context.router.history.push(`/profile`)
+      //  this.context.router.history.push(`/profile`)
       }
     })
   }
-
-
 
 render(){
   return <>
@@ -70,7 +54,7 @@ render(){
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
       <Grid.Column>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.loginSubmit}>
           <Form.Input
             icon='user'
             iconPosition='left'
@@ -106,4 +90,4 @@ render(){
   </>
 }
 }
-export default Login = withRouter(connect(null, {authenticate})(Login));
+export default Login

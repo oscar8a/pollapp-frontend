@@ -4,38 +4,38 @@ import { connect } from 'react-redux';
 
 class Main extends React.Component{
 
-  // state = {
-  //   allPolls: [],
-  //   myPolls: []
-  // }
+  state = {
+    allPolls: [],
+    myPolls: []
+  }
 
-  // componentDidMount(){
-  //   console.log(this.props)
-  //   const { token } = this.props
+  componentDidMount(){
+    
+    const token  = localStorage.token
 
-  //   fetch("http://localhost:3000/polls", {
-  //     headers: {
-  //       "Authorization": token
-  //     }
-  //   }).then(res => res.json())
-  //   .then(data => this.setState({
-  //     allPolls: data
-  //   }))
+    fetch("http://localhost:3000/polls", {
+      headers: {
+        "Authorization": token
+      }
+    }).then(res => res.json())
+    .then(data => this.setState({
+      allPolls: data
+    }))
 
-  //   const { loggedInUserId } = this.props
+    const loggedInUserId = localStorage.userId
 
-  //   if (loggedInUserId){
-  //     fetch(`http://localhost:3000/users/${loggedInUserId}`, {
-  //       headers: {
-  //         "Authorization": token
-  //       }
-  //     })
-  //     .then(res => res.json())
-  //     .then(user => this.setState({
-  //       myPolls: user.polls
-  //     }))
-  //   }
-  // }
+    if (loggedInUserId){
+      fetch(`http://localhost:3000/users/${loggedInUserId}`, {
+        headers: {
+          "Authorization": token
+        }
+      })
+      .then(res => res.json())
+      .then(user => this.setState({
+        myPolls: user.polls
+      }))
+    }
+  }
 
   render(){
     return(<>

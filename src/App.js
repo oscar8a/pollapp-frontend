@@ -8,7 +8,6 @@ import Signup from './containers/Signup';
 import Profile from './containers/Profile';
 import Main from './containers/Main';
 import { Route, NavLink, Switch } from 'react-router-dom'
-import { connect } from 'react-redux'
 import AllPolls from './containers/AllPolls';
 
 class App extends React.Component {
@@ -47,14 +46,6 @@ class App extends React.Component {
   }
 
   render(){
-    // const userViews = (
-    //   <div>
-    //     <Navigation />
-    //     <Route exact path="/login" component={Login}/>
-    //     <Route exact path="/main" component={Main}/>
-    //     <Route exact path="/profile" component={Profile}/>
-    //   </div>
-    // )
 
   return (<>
     <Navigation logOutUser={this.logOutUser} />
@@ -63,10 +54,10 @@ class App extends React.Component {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <Switch>
-      <Route path="/" exact component={ Login }/>
-      <Route path="/login" component={ Login }/>
+      <Route path="/" exact render={() => (<Login loginUser={this.loginUser} />)} />
+      <Route path="/login" component={<Login loginUser={this.loginUser} />}/>
       <Route path="/signup" component={ Signup }/>
-      <Route path="/profile" component={ Profile }/>
+      <Route path="/profile" render={() => <Profile userInfo={this.state}/>}/>
       <Route path="/polls" component={ AllPolls }/>
       <Route exact path="/main" component={Main}/>
       <Route component={ NotFound }/>
@@ -89,11 +80,4 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.currentUser
-  }
-}
-
-export default App = connect(mapStateToProps, {})(App);
+export default App
