@@ -38,6 +38,7 @@ export const signup = (user) => {
     })
       .then(resp => resp.json())
       .then(data => {
+        console.log(`this is the signup response: ${data}`)
         dispatch(authenticate({
           username: newUser.username,
           email: newUser.email,
@@ -70,33 +71,20 @@ export const authenticate = (credentials) => {
       console.log(response)
         localStorage.token = response.token
         localStorage.userId = response.user_id
+        return getUser(credentials)
     })
-    
-  
-    
-    // fetch(`${API_URL}/user_token`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({auth: credentials})
-    // })
-
-
-
-      // .then((user) => {
-      //   console.log(user)
-      //     dispatch(authSuccess(user, localStorage.token))
-      // })
-      // .catch((errors) => {
-      //     dispatch(authFailure(errors))
-      //     localStorage.clear()
-      // })
+    .then((user) => {
+      console.log(user)
+      dispatch(authSuccess(user, localStorage.token))
+    })
+    .catch((errors) => {
+        dispatch(authFailure(errors))
+        localStorage.clear()
+    })  
   }
 }
 
-
-
+// Loggin in user without Redux
 // loginUser = (token, userId) => {
 //   localStorage.token = token
 //   localStorage.userId = userId
@@ -106,19 +94,19 @@ export const authenticate = (credentials) => {
 //   })
 // }
 
-// export const getUser = (credentials) => {
-//   const request = new Request(`${API_URL}/find_user`, {
-//     method: "POST",
-//     headers: new Headers({
-//       "Content-Type": "application/json",
-//       "Authorization": `Bearer ${localStorage.token}`,
-//     }),
-//     body: JSON.stringify({user: credentials})
-//   })
-//   return fetch(request)
-//     .then(response => response.json())
-//     .then(userJson => {return userJson})
-//     .catch(error => {
-//       return error;
-//     });
-// }
+export const getUser = (credentials) => {
+  const request = new Request("http://localhost:3000/find_user", {
+    method: "POST",   
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.token}`,
+    }),
+    body: JSON.stringify({user: credentials})
+  })
+  return fetch(request)
+    .then(response => response.json())
+    .then(userJson => {return userJson})
+    .catch(error => {
+      return error;
+    });
+}

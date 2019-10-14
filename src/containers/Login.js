@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
 import { authenticate } from '../actions/AuthActions'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Login extends React.Component{
@@ -95,7 +95,9 @@ render(){
       </Grid.Column>
 
       <Grid.Column verticalAlign='middle'>
-        <Button content='Sign up' icon='signup' size='big' />
+      <Link to="/signup">
+        <Button content='Sign up' icon='signup' size='big'/>
+      </Link>
       </Grid.Column>
     </Grid>
 

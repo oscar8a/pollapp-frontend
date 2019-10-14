@@ -69,7 +69,7 @@ class App extends React.Component {
       <Route path="/polls" component={ AllPolls }/>
       <Route component={ NotFound }/>
       </Switch>
-
+      <button onClick={ this.logOutUser }>LOG OUT</button>
       {/* {
         this.isLoggedIn()
         ?
