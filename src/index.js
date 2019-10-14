@@ -5,15 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import pollReducer from './reducers/Reducer'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import rootReducer from './reducers/index'
 
-const initialState = {
-  polls: []
-}
+// const initialState = {
+//   polls: [],
+//   isAuthenticated: false,
+//   isAuthenticating: false,
+//   currentUser: {},
+//   token: null,
+//   errors: []
+// }
 
-const store = createStore(pollReducer, initialState, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 console.log(store.getState())
 

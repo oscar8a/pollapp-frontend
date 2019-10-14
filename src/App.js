@@ -46,7 +46,6 @@ class App extends React.Component {
   }
 
   render(){
-
     // const userViews = (
     //   <div>
     //     <Navigation />
@@ -56,9 +55,8 @@ class App extends React.Component {
     //   </div>
     // )
 
-
   return (<>
-    <Navigation />
+    <Navigation logOutUser={this.logOutUser} />
     <div className="App"> 
       <header>
         <img src={logo} className="App-logo" alt="logo" />
@@ -71,7 +69,6 @@ class App extends React.Component {
       <Route path="/polls" component={ AllPolls }/>
       <Route component={ NotFound }/>
       </Switch>
-
 
       {/* {
         this.isLoggedIn()

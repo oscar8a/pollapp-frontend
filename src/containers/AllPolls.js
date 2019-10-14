@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
   console.log(state)
-  // console.log(state.pokemon)
+  // console.log(state.polls)
   return {
     polls: state.polls
   }
@@ -27,14 +27,14 @@ const fetchPolls = () => {
 class AllPolls extends React.Component {
 
   componentDidMount(){
-    fetch("http://localhost:3000/polls")
-      .then(resp => resp.json())
-      .then(data => this.props.dispatch({
-        type: "FILL_POLLS",
-        polls: data
-      }))
+    // fetch("http://localhost:3000/polls")
+    //   .then(resp => resp.json())
+    //   .then(data => this.props.dispatch({
+    //     type: "FILL_POLLS",
+    //     polls: data
+    //   }))
 
-    //this.props.fetchPolls()
+    this.props.fetchPolls()
 
   }
 
@@ -53,5 +53,5 @@ class AllPolls extends React.Component {
 // const ConnectedAllPolls = wrap(AllPolls)
 // export default ConnectedAllPolls
 
-export default connect(mapStateToProps)(AllPolls)
-// connect(mapStateToProps, { fetchPolls: fetchPolls })(AllPolls)
+export default connect(mapStateToProps, { fetchPolls: fetchPolls })(AllPolls)
+// connect(mapStateToProps)(AllPolls)
