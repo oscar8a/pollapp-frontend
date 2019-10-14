@@ -27,11 +27,14 @@ const fetchPolls = () => {
 class AllPolls extends React.Component {
 
   componentDidMount(){
-    // fetch("http://localhost:3000/polls")
-    //   .then(resp => resp.json())
-    //   .then(data => reducer.getAllPolls)
+    fetch("http://localhost:3000/polls")
+      .then(resp => resp.json())
+      .then(data => this.props.dispatch({
+        type: "FILL_POLLS",
+        polls: data
+      }))
 
-    this.props.fetchPolls()
+    //this.props.fetchPolls()
 
   }
 
@@ -46,10 +49,9 @@ class AllPolls extends React.Component {
   }
 }
 
-const wrap = connect(mapStateToProps)
+// const wrap = connect(mapStateToProps)
+// const ConnectedAllPolls = wrap(AllPolls)
+// export default ConnectedAllPolls
 
-const ConnectedAllPolls = wrap(AllPolls)
-
-export default ConnectedAllPolls
-
+export default connect(mapStateToProps)(AllPolls)
 // connect(mapStateToProps, { fetchPolls: fetchPolls })(AllPolls)

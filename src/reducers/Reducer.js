@@ -23,7 +23,9 @@ const pollReducer = function(state = null, action){
 
   switch(action.type) {
     case "FILL_POLLS":
-      return action.poll
+      return {
+        polls: action.polls
+      }
     // case "ADD_POKEMON": 
     //   return [ ...state, { id: uuid(), ...action.pokemon } ]
     // case "UPDATE_POKEMON_WEIGHT":

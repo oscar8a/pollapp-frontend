@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
 
-class FormExampleForm extends React.Component {
+class Signup extends React.Component {
 
   state ={
     logIn:false,
@@ -65,4 +65,4 @@ render(){
   </>)
 }
 }
-export default FormExampleForm
+export default Signup
