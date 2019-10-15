@@ -1,7 +1,5 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
-import { signup } from '../actions/AuthActions'
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 class Signup extends React.Component {
@@ -26,16 +24,16 @@ class Signup extends React.Component {
     })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    if (this.props.signup(this.state)) {
-      this.props.history.push('profile')
-      window.alert("You have Signed Up!")
-    } else {
-      window.alert("There was an issue creating your account")
-    }
-  }
+  //   if (this.signupSubmit(this.state)) {
+  //     this.props.history.push('profile')
+  //     window.alert("You have Signed Up!")
+  //   } else {
+  //     window.alert("There was an issue creating your account")
+  //   }
+  // }
 
   signupSubmit = e => {
     e.preventDefault()
@@ -56,7 +54,7 @@ class Signup extends React.Component {
             errors: data.errors
           })
         } else {
-          this.props.loginUser(data.token, data.user_id)
+          console.log(data)
         }
       })
   }
@@ -65,7 +63,7 @@ class Signup extends React.Component {
 
 render(){
   return(<>
-  <Form onSubmit={this.handleSubmit}>
+  <Form onSubmit={this.signupSubmit}>
     <Form.Field>
       <label>Username</label>
       <input name='username' placeholder='Username' onChange={this.onChange}
@@ -86,4 +84,4 @@ render(){
   </>)
 }
 }
-export default Signup = withRouter(connect(null, {signup})(Signup));
+export default Signup

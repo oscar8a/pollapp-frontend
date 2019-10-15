@@ -52,7 +52,8 @@ class App extends React.Component {
       <Switch>
       <Route path="/" exact render={() => (<Login loginUser={this.loginUser} />)} />
       <Route path="/login" render={() => (<Login loginUser={this.loginUser} />)} />
-      <Route path="/signup" component={ Signup }/>
+      <Route path="/home" render={() => (<Main />)} />
+      <Route path="/signup" render={() => (<Signup loginUser={this.loginUser}/>)} />
       <Route path="/profile" render={() => <Profile/>}/>
       <Route path="/polls" component={ AllPolls }/>
       <Route path="/createpoll" component={ CreatePoll }/>
