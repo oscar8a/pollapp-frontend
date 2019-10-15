@@ -5,7 +5,6 @@ import { withRouter, Link } from 'react-router-dom';
 class Login extends React.Component{
 
   state ={
-    logIn:false,
     username: "",
     password: "",
     errors: []
@@ -38,8 +37,9 @@ class Login extends React.Component{
           errors: data.errors
         })
       } else {
+        console.log(data)
         this.props.loginUser(data.token, data.user_id)
-      //  this.context.router.history.push(`/profile`)
+        // this.props.router.push(`/main`)
       }
     })
   }

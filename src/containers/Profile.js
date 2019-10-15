@@ -1,5 +1,6 @@
 import React from 'react'
 import PollCard from './PollCard'
+import { Link } from 'react-router-dom'
 
 class Profile extends React.Component{
 
@@ -19,23 +20,19 @@ class Profile extends React.Component{
       }
     })
     .then(res => res.json())
-    .then(resp =>   this.setState({
-    user: {username: resp.data.attributes.username, email: resp.data.attributes.email },
-    polls: resp.included
-  }))
+    .then(resp => {
+      console.log(resp)
+      this.setState({
+        user: {username: resp.data.attributes.username, email: resp.data.attributes.email },
+        polls: resp.included
+      })
+    })
   }
-
-  // console.log(resp)
-
-
-
-
-
-   // this.setState({
-    //   user: {username: resp.username, email: resp.email },
-    //   polls: resp.polls
-    // })
-
+  
+      // this.setState({
+      //   user: {username: resp.username, email: resp.email },
+      //   polls: resp.polls
+      // })
 
   render(){
 
@@ -49,9 +46,9 @@ class Profile extends React.Component{
         }) }
       </ul>
 
+      <Link to="/createpoll">
       <button> Create new Poll</button>
-
-
+      </Link>
 
       </>
       )

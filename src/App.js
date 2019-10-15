@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Navigation from './containers/Navigation';
 import Login from './containers/Login';
 import NotFound from './components/NotFound';
 import Signup from './containers/Signup';
 import Profile from './containers/Profile';
 import Main from './containers/Main';
+import CreatePoll from './components/forms/CreatePoll';
 import { Route, NavLink, Switch } from 'react-router-dom'
 import AllPolls from './containers/AllPolls';
 
@@ -49,22 +48,20 @@ class App extends React.Component {
 
   return (<>
     <Navigation logOutUser={this.logOutUser} />
-    <div className="App"> 
-      <header>
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+    <div className="App">
       <Switch>
       <Route path="/" exact render={() => (<Login loginUser={this.loginUser} />)} />
-      <Route path="/login" component={<Login loginUser={this.loginUser} />}/>
+      <Route path="/login" render={() => (<Login loginUser={this.loginUser} />)} />
       <Route path="/signup" component={ Signup }/>
-      <Route path="/profile" render={() => <Profile userInfo={this.state}/>}/>
+      <Route path="/profile" render={() => <Profile/>}/>
       <Route path="/polls" component={ AllPolls }/>
+      <Route path="/createpoll" component={ CreatePoll }/>
       <Route exact path="/main" component={Main}/>
       <Route component={ NotFound }/>
       </Switch>
-      <button onClick={ this.logOutUser }>LOG OUT</button>
       {/* {
         this.isLoggedIn()
+        <button onClick={ this.logOutUser }>LOG OUT</button>
         ?
         <>
         <button onClick={ this.logOutUser }>LOG OUT</button>

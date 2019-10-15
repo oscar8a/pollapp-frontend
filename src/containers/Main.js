@@ -1,6 +1,4 @@
 import React from 'react'
-import { getUserPolls } from '../actions/PollActions'
-import { connect } from 'react-redux';
 
 class Main extends React.Component{
 
@@ -43,6 +41,7 @@ class Main extends React.Component{
     <section>
       <h2> My Polls </h2>
       {console.log(this.props)}
+      {console.log(this.state)}
       <ol>
         {this.state.myPolls.map(poll => <li key={poll.id}>{ poll.poll_name }</li>)}
       </ol>
@@ -58,10 +57,4 @@ class Main extends React.Component{
 
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    users: state.users
-  })
-}
-
-export default connect(mapStateToProps, { getUserPolls })(Main);
+export default Main;
