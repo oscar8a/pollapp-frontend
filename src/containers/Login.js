@@ -90,4 +90,4 @@ render(){
   </>
 }
 }
-export default Login
+export default withRouter(Login)

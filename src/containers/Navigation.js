@@ -15,16 +15,18 @@ export default class Navigation extends Component {
       <Segment inverted>
         <Menu inverted secondary>
           <Menu.Item
+            as={Link}
+            to='/home'
             name='home'
             active={activeItem === 'home'}
-            onClick={this.handleItemClick} >
-            <Link to="/"> Home </Link>
+            onClick={this.handleItemClick}>
           </Menu.Item>
           <Menu.Item
+            as={Link}
+            to='/profile'
             name='profile'
             active={activeItem === 'profile'}
             onClick={this.handleItemClick} >
-            <Link to="/profile"> Profile </Link>
           </Menu.Item>
           <Menu.Item
             name='logout'

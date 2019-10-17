@@ -29,14 +29,29 @@ class CreatePoll extends React.Component {
         user_id: localStorage.userId
       })
     }).then(res => res.json())
-      .then(data => {console.log(data)
-        // if (data.errors) {
-        //   this.setState({
-        //     errors: data.errors
-        //   })
-        // } else {
-        //   this.props.loginUser(data.token, data.user_id)
-        // }
+      .then(data => {
+        this.addOptionsToPoll(data.id, this.state.optionname1)
+        this.addOptionsToPoll(data.id, this.state.optionname2)
+      })
+  }
+
+  addOptionsToPoll = (pollID, optionName) => {
+    console.log(pollID, optionName)
+
+    fetch("http://localhost:3000/vote_options", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        poll_id: pollID,
+        option_name: optionName,
+        is_active: true
+      })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
       })
 
   }
