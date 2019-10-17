@@ -26,7 +26,8 @@ class CreatePoll extends React.Component {
       },
       body: JSON.stringify({
         poll_name: this.state.pollname,
-        user_id: localStorage.userId
+        user_id: localStorage.userId,
+        is_active: true
       })
     }).then(res => res.json())
       .then(data => {
@@ -46,7 +47,6 @@ class CreatePoll extends React.Component {
       body: JSON.stringify({
         poll_id: pollID,
         option_name: optionName,
-        is_active: true
       })
       })
       .then(res => res.json())

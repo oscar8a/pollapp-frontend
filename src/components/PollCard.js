@@ -72,7 +72,7 @@ class PollCard extends React.Component {
         </ul>
       </Card.Description>
       <Card.Content extra>
-
+        {/* ISACTIVE?  SHOW VOTES CASTED TOTAL : SEE RESULTS BUTTON */}
         {
           pollAttributes.is_active
           ?
@@ -84,7 +84,7 @@ class PollCard extends React.Component {
           </div>
           :
           <Link to={{pathname: "/poll_results", state: {polldata: pollAttributes} }}>
-          <Button >See Poll Results</Button>
+          <Button primary>See Poll Results</Button>
           </Link>
         }
 
@@ -95,17 +95,32 @@ class PollCard extends React.Component {
 
       </Card.Content>
       <Card.Content>
+        {/* ISLOGGED USER SAME AS POLL CREATOR?  
+        SHOW CLOSE POLL BUTTON : SHOW DISABLED BUTTON */}
         {
-          Number(localStorage.userId) === pollAttributes.user_id
+          Number(localStorage.userId) === pollAttributes.user_id && pollAttributes.is_active
           ?
           <Button negative onClick={this.closePoll} >Close Voting</Button>
           :
-          <Link to={{pathname: "/voting", state: {polldata: pollAttributes} }}>
-          <Button >Cast a Vote</Button>
-          </Link>
+          <Button disabled>Close Voting</Button>
         }
 
       </Card.Content>
+      <Card.Content>
+
+        {
+          Number(localStorage.userId) === pollAttributes.user_id
+          ?
+          "You Created This Poll"
+          :
+          <Link to={{pathname: "/voting", state: {polldata: pollAttributes} }}>
+            <Button >Cast a Vote</Button>
+          </Link>
+        }
+      </Card.Content>
+
+
+      
     </Card>
   </>)
   }
