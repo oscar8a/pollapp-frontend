@@ -6,8 +6,8 @@ import Signup from './containers/Signup';
 import Profile from './containers/Profile';
 import Main from './containers/Main';
 import CreatePoll from './components/forms/CreatePoll';
-import { Route, NavLink, Switch } from 'react-router-dom'
-import AllPolls from './containers/AllPolls';
+import { Route, Switch } from 'react-router-dom' //NavLink
+import Voting from './components/Voting';
 
 class App extends React.Component {
 
@@ -42,6 +42,8 @@ class App extends React.Component {
       token: null,
       loggedInUserId: null
     })
+    // this.props.history.push('/login')
+    console.log(this.props)
   }
 
   render(){
@@ -55,7 +57,7 @@ class App extends React.Component {
       <Route path="/home" render={() => (<Main />)} />
       <Route path="/signup" render={() => (<Signup loginUser={this.loginUser}/>)} />
       <Route path="/profile" render={() => <Profile/>}/>
-      <Route path="/polls" component={ AllPolls }/>
+      <Route path="/voting" component={ Voting }/>
       <Route path="/createpoll" component={ CreatePoll }/>
       <Route exact path="/main" component={Main}/>
       <Route component={ NotFound }/>

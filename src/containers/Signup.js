@@ -45,7 +45,8 @@ class Signup extends React.Component {
       },
       body: JSON.stringify({
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password, 
+        email: this.state.email
       })
     }).then(res => res.json())
       .then(data => {
@@ -54,7 +55,7 @@ class Signup extends React.Component {
             errors: data.errors
           })
         } else {
-          console.log(data)
+          this.props.loginUser(data.token, data.user_id)
         }
       })
   }
@@ -84,4 +85,4 @@ render(){
   </>)
 }
 }
-export default Signup
+export default withRouter(Signup)

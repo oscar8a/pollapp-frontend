@@ -42,7 +42,7 @@ class Main extends React.Component{
 
   render(){
     return(<>
-    <h1> this is the Main page</h1>
+    <h1>...this is the Main page</h1>
     {/* <section>
       <h2> My Polls </h2>
       {console.log(this.props)}
@@ -52,10 +52,10 @@ class Main extends React.Component{
       </ol>
     </section>  */}
     <section>
-      <h2> All Polls </h2>
+      <h2>... these are All Polls </h2>
       {console.log(this.state.allPolls)}
-      <div>
-        {this.state.allPolls.map(poll => {return<PollCard pollData={poll}/>})} 
+      <div className="flex-container">
+        {this.state.allPolls.map(poll => {return<PollCard pollData={poll} key={poll.id}/>})} 
         
         {/* <a href=" " key={poll.id}>{ poll.attributes.poll_name }</a>)} */}
       </div>
