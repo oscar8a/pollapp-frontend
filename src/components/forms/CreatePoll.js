@@ -6,7 +6,8 @@ class CreatePoll extends React.Component {
   state ={
     pollname: "",
     optionname1: "",
-    optionname2: ""
+    optionname2: "",
+    duration: "",
   }
 
   onChange = event => {
@@ -26,12 +27,15 @@ class CreatePoll extends React.Component {
       },
       body: JSON.stringify({
         poll_name: this.state.pollname,
-        user_id: localStorage.userId
+        user_id: localStorage.userId,
+        is_active: true,
+        duration: this.state.duration 
       })
     }).then(res => res.json())
       .then(data => {
-        this.addOptionsToPoll(data.id, this.state.optionname1)
-        this.addOptionsToPoll(data.id, this.state.optionname2)
+        console.log(data)
+        // this.addOptionsToPoll(data.id, this.state.optionname1)
+        // this.addOptionsToPoll(data.id, this.state.optionname2)
       })
   }
 
@@ -46,7 +50,6 @@ class CreatePoll extends React.Component {
       body: JSON.stringify({
         poll_id: pollID,
         option_name: optionName,
-        is_active: true
       })
       })
       .then(res => res.json())
@@ -59,10 +62,11 @@ class CreatePoll extends React.Component {
   render(){
 
 
-    return(<div>
+    return(<div className="createpolldiv">
       <Form onSubmit={this.addPoll}>
-        <Form.Group widths='equal'>
+        <Form.Group>
           <Form.Input
+            width={6}
             fluid
             name="pollname"
             label='Poll Name'
@@ -70,7 +74,10 @@ class CreatePoll extends React.Component {
             onChange={this.onChange}
             value={ this.state.pollname }
           />
+        </Form.Group>
+        <Form.Group>
           <Form.Input
+            width={6}
             fluid
             name="optionname1"
             label='Option 1'
@@ -78,16 +85,30 @@ class CreatePoll extends React.Component {
             onChange={this.onChange}
             value={ this.state.optionname1 }
           />
+        </Form.Group>
+        <Form.Group>
           <Form.Input
+            width={6}
             fluid
             name="optionname2"
             label='Options 2'
             placeholder='Options 2'
             onChange={this.onChange}
             value={ this.state.optionname2 }
+            />
+          </Form.Group>
+          <Form.Input
+            placeholder='Duration'
+            label='Duration'
+            type='number'
+            name="duration"
+            width={3}
+            onChange={this.onChange}
+            value={ this.state.duration }
           />
+          <Form.Group>
           <Button content='Create Poll' positive />
-        </Form.Group>
+          </Form.Group>
       </Form>
 
 
