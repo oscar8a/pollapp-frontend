@@ -14,6 +14,7 @@ class PollCard extends React.Component {
 
   state = {
     isActive: null,
+    dateCreated: null,
     option1votes: 0,
     option2votes: 0
   }
@@ -23,7 +24,8 @@ class PollCard extends React.Component {
     
     this.setState({
       isActive: pollAttributes.is_active,
-      pollID: pollAttributes.id
+      pollID: pollAttributes.id,
+      dateCreated: pollAttributes.create_at
     })
   }
 
