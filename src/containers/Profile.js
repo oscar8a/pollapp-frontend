@@ -40,17 +40,17 @@ class Profile extends React.Component{
     <button className='ui olive button'> Create new Poll</button>
     </Link>
     :
-    <button className="ui disabled button" disabled="" tabindex="-1">Disabled</button>
+    <button className="ui disabled button" disabled='true'>Disabled</button>
 
     //Work on something so profile doesn't show when not logged in
-    return(<div className="maincontainer">
+    return(<div>
       {console.log('Profile this.state', this.state)}
       <div className='profilecenter'>
       <h1>{ this.state.user.username }</h1>
       {buttonPoll}
       <h2> Your Polls: </h2>
-      </div>
-      <ul>
+      </div >
+      <ul className="flex-container">
         { this.state.polls.map(poll => {
           return <PollCard key={poll.id} pollData={poll} />
         }) }

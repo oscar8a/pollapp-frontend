@@ -37,6 +37,11 @@
   text-align: center;
 }
 
+.signupformdiv {
+  text-align: center;
+  padding: 10%;
+}
+
 body {
   background-image: url("https://elevateservices.com/wp-content/uploads/AdobeStock_208568531.jpeg");
 }

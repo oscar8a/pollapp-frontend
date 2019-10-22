@@ -4,7 +4,7 @@ import AllPolls from '../components/AllPolls';
 
 const Main = () => {
     return(
-      <div className="maincontainer">
+      <div>
         <AllPolls />      
       </div>
     )

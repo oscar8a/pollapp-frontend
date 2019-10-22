@@ -6,7 +6,7 @@ import Signup from './containers/Signup';
 import Profile from './containers/Profile';
 import Main from './containers/Main';
 import CreatePoll from './components/forms/CreatePoll';
-import { Route, Switch } from 'react-router-dom';
+import {Switch, Link, withRouter, Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import Voting from './components/Voting';
 import PollResults from './containers/PollResults';
 
@@ -17,76 +17,84 @@ class App extends React.Component {
     token: null
   }
 
-  componentDidMount(){
-    this.setState({
-      token: localStorage.token
-    })
+  componentDidMount() {
+    this.setState({ token: localStorage.token })
   }
 
-  isLoggedIn(){
+  isLoggedIn() {
     return !!this.state.token
   }
 
   loginUser = (token, userId) => {
     localStorage.token = token
     localStorage.userId = userId
-    this.setState({
-      token: token,
-      loggedInUserId: userId
-    })
+    this.setState({ token: token, loggedInUserId: userId })
   }
 
   logOutUser = () => {
     delete localStorage.token
     delete localStorage.userId
-    this.setState({
-      token: null,
-      loggedInUserId: null
-    })
-    this.props.history.push('/login')
-    console.log(this.props)
+    this.setState({ token: null, loggedInUserId: null })
   }
 
-  render(){
+  render() {
 
-  return (<>
-    {
-      localStorage.userId ?
+    const loggedInViews = (<>
       <Navigation logOutUser={this.logOutUser} />
-      :
-      console.log()
-    }
-    <div className="App">
+        <div className="maincontainer">
+        <Switch>
+          <Route path="/" exact component={Main} />
+          <Route path="/login" component={Main} />
+          <Route path="/home" component={Main} />
+          <Route path="/main" component={Main} />
 
-      <Switch>
+          <Route path="/profile" component={Profile} />
 
-      <Route path="/" exact render={() => 
-        localStorage.userId ? (<Main />) : (<Login loginUser={this.loginUser} />)} />
+          <Route path="/voting" component={Voting} />
 
-      <Route path="/login" render={() => (<Login loginUser={this.loginUser} />)} />
+          <Route path="/createpoll" component={CreatePoll} />
 
-      <Route path="/home" render={() => (<Main />)} />
+          <Route path="/poll/:id" component={PollResults} />
 
-      <Route path="/signup" render={() => (<Signup loginUser={this.loginUser}/>)} />
+          <Route component={NotFound} />
 
-      <Route path="/profile" render={() => <Profile/>}/>
+        </Switch>
+      </div>
+      </>
+    )
 
-      <Route path="/voting" component={ Voting }/>
+    const externalViews = (<>
+        <Switch>
+          <Route path="/" exact
+            render={
+              () => (<Login loginUser={this.loginUser} />)
+            }
+          />
+          <Route path="/signup"
+            render={
+              () => (<Signup loginUser={ this.loginUser } />)
+            } 
+          />
+          <Route component={NotFound} />
+        </Switch>
+      </>
+    )
 
-      <Route path="/createpoll" component={ CreatePoll }/>
-
-      <Route path="/:id" component={PollResults}/>
-
-      <Route exact path="/main" component={Main}/>
-
-      <Route component={ NotFound }/>
-
-      </Switch>
-
-    </div>
+    return (<>
+      <div className="App">
+        <Router>
+          {
+            this.isLoggedIn()
+            ?
+            loggedInViews
+            :
+            externalViews
+          }
+        </Router>
+      </div>
     </>
-  );
+    );
   }
 }
 
-export default App
+export default withRouter(App)

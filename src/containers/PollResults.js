@@ -46,25 +46,30 @@ class PollResults extends React.Component{
     console.log(this.state)
 
       return (
-        this.state.loading?
+        this.state.loading
+        ?
+        <div>
         <ReactLoading type={'balls'} color={'blue'} height={'20%'} width={'20%'} />
+        </div>
         :
+        <div className='profilecenter'>
         <Plot
-          data={
-            [{
-              type: 'bar',
-              x: [this.state.op1.option_name, this.state.op2.option_name], 
-              y: [this.state.op1.votes.length, this.state.op2.votes.length]
-            }]
+        data={
+          [{
+            type: 'bar',
+            x: [this.state.op1.option_name, this.state.op2.option_name], 
+            y: [this.state.op1.votes.length, this.state.op2.votes.length]
+          }]
+        }
+        layout={
+          {
+            width: 500, 
+            height: 500, 
+            title: this.state.pollName
           }
-          layout={
-            {
-              width: 500, 
-              height: 500, 
-              title: this.state.pollName
-            }
-          }
+        }
         />
+        </div>
       );
     }
 }
