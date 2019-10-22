@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { BrowserRouter as Redirect, NavLink, Link } from 'react-router-dom'
 import { Menu, Segment } from 'semantic-ui-react'
 
 export default class Navigation extends Component {
@@ -12,22 +12,22 @@ export default class Navigation extends Component {
     const { activeItem } = this.state
 
     return (
-      <Segment inverted>
+      <Segment className="ui blue inverted">
         <Menu inverted secondary>
           <Menu.Item
             as={Link}
             to='/home'
             name='home'
             active={activeItem === 'home'}
-            onClick={this.handleItemClick}>
-          </Menu.Item>
+            onClick={this.handleItemClick}
+          />
           <Menu.Item
             as={Link}
             to='/profile'
             name='profile'
             active={activeItem === 'profile'}
-            onClick={this.handleItemClick} >
-          </Menu.Item>
+            onClick={this.handleItemClick}
+          />
           <Menu.Item
             name='logout'
             active={activeItem === 'logout'}

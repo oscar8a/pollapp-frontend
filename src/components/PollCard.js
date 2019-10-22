@@ -33,14 +33,16 @@ class PollCard extends React.Component {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        this.setState({
+          isActive: data.is_active
+        })
       })
   }
   
   render(){
     // const pollData = this.props.pollData
     const pollAttributes = this.props.pollData.attributes;
-    console.log(pollAttributes)
+    // console.log(pollAttributes)
     
   return(<>
     <Card>
@@ -50,6 +52,7 @@ class PollCard extends React.Component {
         { pollAttributes.poll_name }
       </div>
       </Card.Content>
+
       <Card.Description>
         <ul>
         {
@@ -61,6 +64,7 @@ class PollCard extends React.Component {
         }
         </ul>
       </Card.Description>
+
       <Card.Content extra>
         {/* ISACTIVE?  SHOW VOTES CASTED TOTAL : SEE RESULTS BUTTON */}
         {
@@ -73,12 +77,12 @@ class PollCard extends React.Component {
             } Votes 
           </div>
           :
-          <Link to={{pathname: `/${pollAttributes.id}`, state: {polldata: pollAttributes} }}>
+          <Link to={{pathname: `/poll/${pollAttributes.id}`, state: {polldata: pollAttributes} }}>
           <Button primary>See Poll Results</Button>
           </Link>
         }
-
       </Card.Content>
+
       <Card.Content>
         {/* ISLOGGED USER SAME AS POLL CREATOR?  
         SHOW CLOSE POLL BUTTON : SHOW DISABLED BUTTON */}
@@ -89,16 +93,16 @@ class PollCard extends React.Component {
           :
           <Button disabled>Close Voting</Button>
         }
-
       </Card.Content>
-      <Card.Content>
 
+      <Card.Content>
         {
           Number(localStorage.userId) === pollAttributes.user_id 
           ?
-          "You Created This Poll"
+          "You Created This Poll / Voting Disabled"
           :
-          this.state.isActive ?
+          this.state.isActive
+          ?
           <Link to={{pathname: "/voting", state: {polldata: pollAttributes} }}>
             <Button positive >Cast a Vote</Button>
           </Link>

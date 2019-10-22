@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 
 class Login extends React.Component{
 
@@ -39,7 +39,7 @@ class Login extends React.Component{
       } else {
         console.log(data)
         this.props.loginUser(data.token, data.user_id)
-        // this.props.router.push(`/main`)
+        return(<Redirect to='/main' />)
       }
     })
   }
@@ -51,9 +51,12 @@ render(){
       this.state.errors.map(error => <li>{ error }</li>)
     }
   </ul>
-  <div className="loginsignupdiv">
 
-  
+  <div name="welcome" className='welcome'>
+    <h1> Welcome to </h1>
+  </div>
+
+  <div className="loginsignupdiv">
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
       <Grid.Column>

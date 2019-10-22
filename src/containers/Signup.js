@@ -63,7 +63,9 @@ class Signup extends React.Component {
 
 
 render(){
-  return(<>
+  return(
+  <div className="maincontainer signupformdiv">
+  <h1> Signup Form </h1>
   <Form onSubmit={this.signupSubmit}>
     <Form.Field>
       <label>Username</label>
@@ -80,9 +82,10 @@ render(){
       <input name='password' placeholder='Password' type='password' onChange={this.onChange}
             value={ this.state.password}/>
     </Form.Field>
-    <Button type='submit'>Submit</Button>
+    <Button type='submit' positive>Submit</Button>
   </Form>
-  </>)
+  </div>
+  )
 }
 }
 export default withRouter(Signup)
