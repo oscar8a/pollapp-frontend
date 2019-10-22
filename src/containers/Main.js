@@ -1,5 +1,6 @@
-import React from 'react'
-import PollCard from '../components/PollCard'
+import React from 'react';
+import PollCard from '../components/PollCard';
+import { withRouter } from 'react-router-dom';
 
 class Main extends React.Component{
 
@@ -65,4 +66,4 @@ class Main extends React.Component{
 
 }
 
-export default Main;
+export default withRouter(Main)

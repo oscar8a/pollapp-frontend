@@ -2,21 +2,11 @@ import React from 'react';
 import { Button, Card, Icon, Image } from 'semantic-ui-react'
 import { withRouter, Link } from 'react-router-dom';
 
-// setActive = () => {
-//   if (!!this.props.pollData.attributes) {
-//     this.setState({ isActive: true})
-//   } else {
-//     console.log("No Data present to create Poll Card")
-//   }
-// }
-
 class PollCard extends React.Component {
 
   state = {
     isActive: null,
-    dateCreated: null,
-    option1votes: 0,
-    option2votes: 0
+    dateCreated: null
   }
 
   componentDidMount(){
@@ -31,9 +21,6 @@ class PollCard extends React.Component {
 
   closePoll = (e) => {
     console.log("Close Poll Function called")
-
-
-
     
     fetch(`http://localhost:3000/polls/${this.state.pollID}`, {
       method: "POST",
@@ -48,7 +35,6 @@ class PollCard extends React.Component {
       .then(data => {
         console.log(data)
       })
-
   }
   
   render(){
@@ -59,8 +45,10 @@ class PollCard extends React.Component {
   return(<>
     <Card>
       <Image src='https://iconsplace.com/wp-content/uploads/_icons/000080/256/png/poll-topic-icon-9-256.png' className='image'/>
-      <Card.Content>
-        <Card.Header>{ pollAttributes.poll_name }</Card.Header>
+      <Card.Content >
+      <div className="ui center aligned header">
+        { pollAttributes.poll_name }
+      </div>
       </Card.Content>
       <Card.Description>
         <ul>
@@ -85,15 +73,10 @@ class PollCard extends React.Component {
             } Votes 
           </div>
           :
-          <Link to={{pathname: "/poll_results", state: {polldata: pollAttributes} }}>
+          <Link to={{pathname: `/${pollAttributes.id}`, state: {polldata: pollAttributes} }}>
           <Button primary>See Poll Results</Button>
           </Link>
         }
-
-        {/* <div>
-          <Icon name='checkmark' />
-          # Votes
-        </div> */}
 
       </Card.Content>
       <Card.Content>
@@ -111,29 +94,20 @@ class PollCard extends React.Component {
       <Card.Content>
 
         {
-          Number(localStorage.userId) === pollAttributes.user_id
+          Number(localStorage.userId) === pollAttributes.user_id 
           ?
           "You Created This Poll"
           :
+          this.state.isActive ?
           <Link to={{pathname: "/voting", state: {polldata: pollAttributes} }}>
-            <Button >Cast a Vote</Button>
+            <Button positive >Cast a Vote</Button>
           </Link>
+          : 
+          <Button disabled >Cast a Vote</Button>
         }
       </Card.Content>
-
-
-      
     </Card>
   </>)
   }
-
 }
 export default withRouter(PollCard)
-
-
-{/* <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
-    </Card.Content> */}

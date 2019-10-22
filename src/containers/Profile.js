@@ -1,6 +1,6 @@
-import React from 'react'
-import PollCard from '../components/PollCard'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import PollCard from '../components/PollCard';
+import { withRouter, Link } from 'react-router-dom';
 
 class Profile extends React.Component{
 
@@ -17,32 +17,23 @@ class Profile extends React.Component{
 
     if (localStorage.userId){
 
-    fetch(`http://localhost:3000/users/${localStorage.userId}`, {
-      headers: {
-        "Authorization": localStorage.token
-      }
-    })
-    .then(res => res.json())
-    .then(resp => {
-      console.log(resp)
-      this.setState({
-        user: {username: resp.data.attributes.username, email: resp.data.attributes.email },
-        polls: resp.included
+      fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+        headers: {
+          "Authorization": localStorage.token
+        }
       })
-    })
-
-  }//conditional closing brace
+      .then(res => res.json())
+      .then(resp => {
+        console.log(resp)
+        this.setState({
+          user: {username: resp.data.attributes.username, email: resp.data.attributes.email },
+          polls: resp.included
+        })
+      })
+    }//conditional closing brace
   }
-  
-      // this.setState({
-      //   user: {username: resp.username, email: resp.email },
-      //   polls: resp.polls
-      // })
 
   render(){
-    // const voteOptions = this.props.pollData.attributes.vote_options;
-
-    // console.log(voteOptions)
 
     let buttonPoll = localStorage.userId ? 
     <Link to="/createpoll">
@@ -51,6 +42,7 @@ class Profile extends React.Component{
     :
     <button className="ui disabled button" disabled="" tabindex="-1">Disabled</button>
 
+    //Work on something so profile doesn't show when not logged in
     return(<>
       {console.log('Profile this.state', this.state)}
       <h1>...this is the User Profile</h1>
@@ -61,11 +53,9 @@ class Profile extends React.Component{
           return <PollCard key={poll.id} pollData={poll} />
         }) }
       </ul>
-
-     
-
       </>
       )
   }
+  
 }
-export default Profile
+export default withRouter(Profile)

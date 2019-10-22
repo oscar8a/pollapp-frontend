@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Button } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom';
 
 class CreatePoll extends React.Component {
 
@@ -34,8 +35,8 @@ class CreatePoll extends React.Component {
     }).then(res => res.json())
       .then(data => {
         console.log(data)
-        // this.addOptionsToPoll(data.id, this.state.optionname1)
-        // this.addOptionsToPoll(data.id, this.state.optionname2)
+        this.addOptionsToPoll(data.id, this.state.optionname1)
+        this.addOptionsToPoll(data.id, this.state.optionname2)
       })
   }
 
@@ -117,4 +118,4 @@ class CreatePoll extends React.Component {
   }
 
 }
-export default CreatePoll
+export default withRouter(CreatePoll)

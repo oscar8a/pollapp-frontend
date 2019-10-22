@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, Message } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom';
 
 class Voting extends React.Component {
 
@@ -74,4 +75,4 @@ class Voting extends React.Component {
     </div>)
   }
 }
-export default Voting
+export default withRouter(Voting)

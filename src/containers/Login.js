@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react';
 import { withRouter, Link } from 'react-router-dom';
 
 class Login extends React.Component{
@@ -51,6 +51,9 @@ render(){
       this.state.errors.map(error => <li>{ error }</li>)
     }
   </ul>
+  <div className="loginsignupdiv">
+
+  
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
       <Grid.Column>
@@ -87,6 +90,7 @@ render(){
 
     <Divider vertical>Or</Divider>
   </Segment>
+  </div>
   </>
 }
 }
