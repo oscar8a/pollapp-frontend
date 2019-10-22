@@ -26,6 +26,17 @@
   margin-top: 5%;
 }
 
+.maincontainer {
+  margin: 5%;
+  background-color: aliceblue;
+  padding: 2%;
+  border-radius: 25px;
+}
+
+.profilecenter {
+  text-align: center;
+}
+
 body {
-  background-image: url("https://news.kleinisd.net/wp-content/uploads/2018/05/data-1.jpg");
+  background-image: url("https://elevateservices.com/wp-content/uploads/AdobeStock_208568531.jpeg");
 }

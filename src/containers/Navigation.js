@@ -12,7 +12,7 @@ export default class Navigation extends Component {
     const { activeItem } = this.state
 
     return (
-      <Segment inverted>
+      <Segment className="ui blue inverted">
         <Menu inverted secondary>
           <Menu.Item
             as={Link}

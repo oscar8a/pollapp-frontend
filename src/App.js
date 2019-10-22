@@ -50,13 +50,18 @@ class App extends React.Component {
   render(){
 
   return (<>
-    <Navigation logOutUser={this.logOutUser} />
+    {
+      localStorage.userId ?
+      <Navigation logOutUser={this.logOutUser} />
+      :
+      console.log()
+    }
     <div className="App">
 
       <Switch>
 
       <Route path="/" exact render={() => 
-        this.state.loggedInUserId ? (<Main />) : (<Login loginUser={this.loginUser} />)} />
+        localStorage.userId ? (<Main />) : (<Login loginUser={this.loginUser} />)} />
 
       <Route path="/login" render={() => (<Login loginUser={this.loginUser} />)} />
 

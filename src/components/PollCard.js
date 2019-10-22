@@ -32,15 +32,15 @@ class PollCard extends React.Component {
       })
       })
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      })
+      // .then(data => {
+      //   console.log(data)
+      // })
   }
   
   render(){
     // const pollData = this.props.pollData
     const pollAttributes = this.props.pollData.attributes;
-    console.log(pollAttributes)
+    // console.log(pollAttributes)
     
   return(<>
     <Card>
@@ -96,7 +96,7 @@ class PollCard extends React.Component {
         {
           Number(localStorage.userId) === pollAttributes.user_id 
           ?
-          "You Created This Poll"
+          "You Created This Poll / Voting Disabled"
           :
           this.state.isActive ?
           <Link to={{pathname: "/voting", state: {polldata: pollAttributes} }}>

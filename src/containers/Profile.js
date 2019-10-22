@@ -30,30 +30,32 @@ class Profile extends React.Component{
           polls: resp.included
         })
       })
-    }//conditional closing brace
+    }
   }
 
   render(){
 
     let buttonPoll = localStorage.userId ? 
     <Link to="/createpoll">
-    <button> Create new Poll</button>
+    <button className='ui olive button'> Create new Poll</button>
     </Link>
     :
     <button className="ui disabled button" disabled="" tabindex="-1">Disabled</button>
 
     //Work on something so profile doesn't show when not logged in
-    return(<>
+    return(<div className="maincontainer">
       {console.log('Profile this.state', this.state)}
-      <h1>...this is the User Profile</h1>
-      <h2> { this.state.user.username} </h2>
+      <div className='profilecenter'>
+      <h1>{ this.state.user.username }</h1>
       {buttonPoll}
+      <h2> Your Polls: </h2>
+      </div>
       <ul>
         { this.state.polls.map(poll => {
           return <PollCard key={poll.id} pollData={poll} />
         }) }
       </ul>
-      </>
+      </div>
       )
   }
   
