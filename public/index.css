@@ -18,6 +18,14 @@
   margin: auto;
   width: 80%;
   height: 400px;
-  
+}
 
+.loginsignupdiv {
+  width: 60%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+body {
+  background-image: url("https://news.kleinisd.net/wp-content/uploads/2018/05/data-1.jpg");
 }
