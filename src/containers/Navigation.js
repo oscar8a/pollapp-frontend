@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Redirect, NavLink, Link } from 'react-router-dom'
+import { BrowserRouter as Link } from 'react-router-dom'
 import { Menu, Segment } from 'semantic-ui-react'
 
 export default class Navigation extends Component {

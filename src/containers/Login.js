@@ -1,13 +1,14 @@
 import React from 'react';
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react';
-import { withRouter, Link, Redirect } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class Login extends React.Component{
 
   state ={
     username: "",
     password: "",
-    errors: []
+    errors: [],
+    toMain: false
   }
 
   onChange = event => {
@@ -21,6 +22,7 @@ class Login extends React.Component{
     e.preventDefault()
 
     fetch("http://localhost:3000/tokens", {
+    // fetch("https://dis-or-dat-poll-app.herokuapp.com/tokens", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -39,7 +41,6 @@ class Login extends React.Component{
       } else {
         console.log(data)
         this.props.loginUser(data.token, data.user_id)
-        return(<Redirect to='/main' />)
       }
     })
   }

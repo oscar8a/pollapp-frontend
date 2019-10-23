@@ -18,6 +18,7 @@ class Profile extends React.Component{
     if (localStorage.userId){
 
       fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+      // fetch(`https://dis-or-dat-poll-app.herokuapp.com/users/${localStorage.userId}`, {
         headers: {
           "Authorization": localStorage.token
         }

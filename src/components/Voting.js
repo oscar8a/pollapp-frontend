@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Message } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
 
 class Voting extends React.Component {

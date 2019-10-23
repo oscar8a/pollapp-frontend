@@ -23,6 +23,7 @@ class PollCard extends React.Component {
     console.log("Close Poll Function called")
     
     fetch(`http://localhost:3000/polls/${this.state.pollID}`, {
+    // fetch(`https://dis-or-dat-poll-app.herokuapp.com/polls/${this.state.pollID}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -77,7 +78,8 @@ class PollCard extends React.Component {
             } Votes 
           </div>
           :
-          <Link to={{pathname: `/poll/${pollAttributes.id}`, state: {polldata: pollAttributes} }}>
+          <Link to={`/polls/${pollAttributes.id}`}>
+          {/* <Link to={{pathname: `/polls/${pollAttributes.id}`, state: {polldata: pollAttributes} }}> */}
           <Button primary>See Poll Results</Button>
           </Link>
         }

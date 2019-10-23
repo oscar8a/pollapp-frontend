@@ -16,6 +16,7 @@ class AllPolls extends React.Component{
     if (localStorage.token){
 
     fetch("http://localhost:3000/polls", {
+    // fetch("https://dis-or-dat-poll-app.herokuapp.com/polls", {
       headers: {
         "Authorization": token
       }
@@ -57,7 +58,9 @@ class AllPolls extends React.Component{
         break;
       case 'false':
         pollArray = allPollsArray.filter(poll => poll.attributes.is_active === false);
-        this.setState({filteredPolls: pollArray})
+        this.setState({filteredPolls: pollArray});
+        break;
+      default: break
     }
   }
 
