@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 
 class Login extends React.Component{
 

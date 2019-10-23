@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Link } from 'react-router-dom'
+import { BrowserRouter as Redirect, NavLink, Link } from 'react-router-dom'
 import { Menu, Segment } from 'semantic-ui-react'
 
 export default class Navigation extends Component {
@@ -32,6 +32,9 @@ export default class Navigation extends Component {
             name='logout'
             active={activeItem === 'logout'}
             onClick={ this.props.logOutUser }
+          />
+          <Menu.Item
+            name='DIS OR DATTTT'
           />
         </Menu>
       </Segment>
