@@ -1,3 +1,7 @@
+/* .App {
+  font-family: monospace;
+} */
+
 .image {
   /* height: 20%; */
   width: 50%;
@@ -41,6 +45,22 @@
 .signupformdiv {
   text-align: center;
   padding: 10%;
+}
+
+.welcome {
+  background-color: aliceblue;
+  margin: auto;
+  width: 60%;
+  padding: 2%;
+  text-align: center;
+  border-radius: 25px;
+
+}
+
+.apptitle {
+  font-family: 'chalkduster';
+  font: fantasy;
+  font-size: 40px;
 }
 
 body {

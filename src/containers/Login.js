@@ -12,7 +12,6 @@ class Login extends React.Component{
   }
 
   onChange = event => {
-    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -39,7 +38,6 @@ class Login extends React.Component{
           errors: data.errors
         })
       } else {
-        console.log(data)
         this.props.loginUser(data.token, data.user_id)
       }
     })
@@ -54,7 +52,8 @@ render(){
   </ul>
 
   <div name="welcome" className='welcome'>
-    <h1> Welcome to </h1>
+    <h3> Welcome to... </h3>
+    <p className='apptitle'>✓ DIS OR DAT ✓</p>
   </div>
 
   <div className="loginsignupdiv">
@@ -76,7 +75,7 @@ render(){
             iconPosition='left'
             label='Password'
             name='password'
-            placeholder='password'
+            type='password'
             onChange={this.onChange}
             value={ this.state.password }
           />

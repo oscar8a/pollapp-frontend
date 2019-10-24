@@ -39,7 +39,6 @@ class App extends React.Component {
   logOutUser = () => {
     delete localStorage.token
     delete localStorage.userId
-    this.props.history.push('/login')
     this.setState({ token: null, loggedInUserId: null })
   }
 

@@ -44,8 +44,6 @@ class PollResults extends React.Component{
 
   render(){
 
-    console.log(this.state)
-
       return (
         this.state.loading
         ?
@@ -66,7 +64,7 @@ class PollResults extends React.Component{
           {
             width: 500, 
             height: 500, 
-            title: this.state.pollName
+            title: `Results for: ${this.state.pollName} `
           }
         }
         />

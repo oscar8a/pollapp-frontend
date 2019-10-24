@@ -5,24 +5,20 @@ import { withRouter } from 'react-router-dom';
 class Voting extends React.Component {
 
   state = {
-    voteForID: null, 
-    message: null,
-    errors: []
+    voteForID: null,
+    errors: [],
+    successfulVote: false
   }
   
   handleChange = (e) => {
     this.setState({
       voteForID: e.target.value
     })
-    // console.log(e.target.value)
-    // console.log(this.state)
   }
   
   castVote = (e) => {
     e.preventDefault()
-    console.log(this.state)
    
-    
     fetch("http://localhost:3000/votes", {
       method: "POST",
       headers: {
@@ -35,16 +31,14 @@ class Voting extends React.Component {
     })
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
       if (data.errors){
         this.setState({
-          message: null,
           errors: data.errors
         })
       } else {
         this.setState({
           errors: [],
-          message: data.message
+          successfulVote: true
         })
       }
     })
@@ -55,15 +49,7 @@ class Voting extends React.Component {
   }
 
   renderMessage = () => {
-    if (!!this.state.message) {
-      return <div className="ui positive message">
-        <i className="close icon"></i>
-        <div className="header">
-          {this.state.message}
-        </div>
-      </div>
-    } else if (this.state.errors.length != 0) {
-      console.log(this.state.errors)
+    if (this.state.errors.length != 0) {
       return <div className="ui negative message">
         <i className="close icon"></i>
         <div className="header">
@@ -75,12 +61,17 @@ class Voting extends React.Component {
             })
           }
         </div>
-    } else { console.log("No error or messages")}
+    } else if (this.state.successfulVote) {
+      return <div className="ui positive message">
+        <i className="close icon"></i>
+        <div className="header">
+          Your Vote was successfully casted!
+        </div>
+      </div>
+    } else {console.log("WOT!?!?")}
   }
   
   render(){
-    console.log(this.props.location.state)
-    console.log(this.state)
 
     const pollData = this.props.location.state.polldata
 
