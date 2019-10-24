@@ -62,8 +62,7 @@ class PollResults extends React.Component{
         }
         layout={
           {
-            width: 500, 
-            height: 500, 
+            autosize: true,
             title: `Results for: ${this.state.pollName} `
           }
         }

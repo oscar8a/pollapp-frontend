@@ -105,7 +105,7 @@ class CreatePoll extends React.Component {
           </Form.Group>
           <Form.Input
             placeholder='Duration'
-            label='Duration'
+            label='Duration (minutes)'
             type='number'
             name="duration"
             width={3}
