@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Redirect, NavLink, Link } from 'react-router-dom'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment, Button } from 'semantic-ui-react'
 
 export default class Navigation extends Component {
   
@@ -29,13 +29,24 @@ export default class Navigation extends Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item
+            as={Link}
+            to='/createpoll'
+            name='create poll'
+            active={activeItem === 'create poll'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item position='right'>
+            <h1 className='apptitle'> DIS OR DAT</h1>
+          </Menu.Item>
+          <Menu.Item
+            as={Link}
+            to='/login'
+            position="right"
             name='logout'
             active={activeItem === 'logout'}
-            onClick={ this.props.logOutUser }
-          />
-          <Menu.Item
-            name='DIS OR DATTTT'
-          />
+            onClick={ this.props.logOutUser }>
+              <Button color='red'>LOGOUT</Button>
+          </Menu.Item>
         </Menu>
       </Segment>
     )

@@ -10,10 +10,6 @@ class Profile extends React.Component{
   }
 
   componentDidMount(){
-    console.log(localStorage)
-    console.log(localStorage.userId)
-    console.log(localStorage.token)
-    console.log(this.state)
 
     if (localStorage.userId){
 
@@ -25,7 +21,6 @@ class Profile extends React.Component{
       })
       .then(res => res.json())
       .then(resp => {
-        console.log(resp)
         this.setState({
           user: {username: resp.data.attributes.username, email: resp.data.attributes.email },
           polls: resp.included
@@ -43,11 +38,10 @@ class Profile extends React.Component{
     :
     <button className="ui disabled button" disabled='true'>Disabled</button>
 
-    //Work on something so profile doesn't show when not logged in
     return(<div>
-      {console.log('Profile this.state', this.state)}
       <div className='profilecenter'>
-      <h1>{ this.state.user.username }</h1>
+      <p className='apptitle'>{ this.state.user.username }</p>
+      <h2 >{ this.state.user.email }</h2>
       {buttonPoll}
       <h2> Your Polls: </h2>
       </div >

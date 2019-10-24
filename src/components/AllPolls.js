@@ -69,6 +69,8 @@ class AllPolls extends React.Component{
     return(<>
     <section className='profilecenter'>
       <h1 >All Polls</h1>
+      <p> Here is a list of all polls created on our App. You can filter them to show active and closed polls.</p>
+      <p> Feel free to browse and cast a vote on a poll of your interest or create one yourself. You can only view the results until the poll has closed.</p>
       <select placeholder={'Select Filter Option'} onChange={this.handleChange}>
         <option value="all">All</option>
         <option value="true">Active Polls</option>

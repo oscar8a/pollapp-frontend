@@ -9,10 +9,10 @@ class CreatePoll extends React.Component {
     optionname1: "",
     optionname2: "",
     duration: "",
+    pollCreated: false
   }
 
   onChange = event => {
-    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -34,14 +34,13 @@ class CreatePoll extends React.Component {
       })
     }).then(res => res.json())
       .then(data => {
-        console.log(data)
         this.addOptionsToPoll(data.id, this.state.optionname1)
         this.addOptionsToPoll(data.id, this.state.optionname2)
       })
+      .then(this.setState({pollCreated: true}))
   }
 
   addOptionsToPoll = (pollID, optionName) => {
-    console.log(pollID, optionName)
 
     fetch("http://localhost:3000/vote_options", {
       method: "POST",
@@ -54,16 +53,22 @@ class CreatePoll extends React.Component {
       })
       })
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      })
+  }
 
+  pollCreatedMessage(){
+    return <div className="ui positive message">
+        <i className="close icon"></i>
+        <div className="header">
+          Your Poll was successfully created!
+        </div>
+      </div>
   }
 
   render(){
 
 
     return(<div className="createpolldiv">
+      <h1>Create Poll:</h1>
       <Form onSubmit={this.addPoll}>
         <Form.Group>
           <Form.Input
@@ -100,7 +105,7 @@ class CreatePoll extends React.Component {
           </Form.Group>
           <Form.Input
             placeholder='Duration'
-            label='Duration'
+            label='Duration (minutes)'
             type='number'
             name="duration"
             width={3}
@@ -111,8 +116,9 @@ class CreatePoll extends React.Component {
           <Button content='Create Poll' positive />
           </Form.Group>
       </Form>
-
-
+      {
+        this.state.pollCreated ? this.pollCreatedMessage() : null
+      }
     </div>
     )
   }

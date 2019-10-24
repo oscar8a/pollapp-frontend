@@ -12,7 +12,6 @@ class Login extends React.Component{
   }
 
   onChange = event => {
-    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -39,7 +38,6 @@ class Login extends React.Component{
           errors: data.errors
         })
       } else {
-        console.log(data)
         this.props.loginUser(data.token, data.user_id)
       }
     })
@@ -47,14 +45,10 @@ class Login extends React.Component{
 
 render(){
   return <>
-  <ul>
-    {
-      this.state.errors.map(error => <li>{ error }</li>)
-    }
-  </ul>
-
+  <p></p>
   <div name="welcome" className='welcome'>
-    <h1> Welcome to </h1>
+    <h3> Welcome to... </h3>
+    <p className='apptitle'>✓ DIS OR DAT ✓</p>
   </div>
 
   <div className="loginsignupdiv">
@@ -76,7 +70,7 @@ render(){
             iconPosition='left'
             label='Password'
             name='password'
-            placeholder='password'
+            type='password'
             onChange={this.onChange}
             value={ this.state.password }
           />
@@ -95,6 +89,24 @@ render(){
     <Divider vertical>Or</Divider>
   </Segment>
   </div>
+  <p></p>
+  {
+    this.state.errors
+    ?        
+    this.state.errors.map(error => {
+      return <div name="errors" className='welcome'>
+        <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+          Oops! Something went wrong...
+        </div>
+        <span>{ error }</span>
+        </div>
+        </div>
+      })
+    :
+    null
+  }
   </>
 }
 }

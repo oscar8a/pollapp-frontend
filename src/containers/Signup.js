@@ -10,16 +10,8 @@ class Signup extends React.Component {
     password: "",
     errors: []
   }
-  // state ={
-  //   logIn:false,
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  //   errors: []
-  // }
 
   onChange = event => {
-    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -96,11 +88,11 @@ render(){
           <div class="header">
             Oops! Something went wrong...
           </div>
-          <p>{ error }</p>
+          <span>{ error }</span>
         </div>
       })
       :
-      console.log('No Errors')
+      null
     }
   </div>
   )

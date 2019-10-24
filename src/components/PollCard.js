@@ -20,7 +20,6 @@ class PollCard extends React.Component {
   }
 
   closePoll = (e) => {
-    console.log("Close Poll Function called")
     
     fetch(`http://localhost:3000/polls/${this.state.pollID}`, {
     // fetch(`https://dis-or-dat-poll-app.herokuapp.com/polls/${this.state.pollID}`, {
@@ -41,9 +40,7 @@ class PollCard extends React.Component {
   }
   
   render(){
-    // const pollData = this.props.pollData
     const pollAttributes = this.props.pollData.attributes;
-    // console.log(pollAttributes)
     
   return(<>
     <Card>
