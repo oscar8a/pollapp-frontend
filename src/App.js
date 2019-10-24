@@ -9,6 +9,8 @@ import CreatePoll from './components/forms/CreatePoll';
 import {Switch, Link, withRouter, Redirect, BrowserRouter as Router, Route} from 'react-router-dom';
 import Voting from './components/Voting';
 import PollResults from './containers/PollResults';
+import history from './history';
+import './index.css';
 
 class App extends React.Component {
 
@@ -28,12 +30,16 @@ class App extends React.Component {
   loginUser = (token, userId) => {
     localStorage.token = token
     localStorage.userId = userId
-    this.setState({ token: token, loggedInUserId: userId })
+    this.setState({
+      token: token,
+      loggedInUserId: userId
+    })
   }
 
   logOutUser = () => {
     delete localStorage.token
     delete localStorage.userId
+    this.props.history.push('/login')
     this.setState({ token: null, loggedInUserId: null })
   }
 
@@ -54,7 +60,7 @@ class App extends React.Component {
 
           <Route path="/createpoll" component={CreatePoll} />
 
-          <Route path="/poll/:id" component={PollResults} />
+          <Route path="/polls/:id" component={PollResults} />
 
           <Route component={NotFound} />
 
@@ -64,25 +70,29 @@ class App extends React.Component {
     )
 
     const externalViews = (<>
-        <Switch>
-          <Route path="/" exact
-            render={
-              () => (<Login loginUser={this.loginUser} />)
-            }
-          />
-          <Route path="/signup"
-            render={
-              () => (<Signup loginUser={ this.loginUser } />)
-            } 
-          />
-          <Route component={NotFound} />
-        </Switch>
-      </>
-    )
+      <Switch>
+        <Route path="/" exact
+          render={
+            () => (<Login loginUser={this.loginUser} />)
+          }
+        />
+        <Route path="/login"
+          render={
+            () => (<Login loginUser={this.loginUser} />)
+          } 
+        />
+        <Route path="/signup"
+          render={
+            () => (<Signup loginUser={ this.loginUser } />)
+          } 
+        />
+        <Route component={NotFound} />
+      </Switch>
+    </>)
 
     return (<>
       <div className="App">
-        <Router>
+        <Router history={history}>
           {
             this.isLoggedIn()
             ?
@@ -92,9 +102,7 @@ class App extends React.Component {
           }
         </Router>
       </div>
-    </>
-    );
+    </>)
   }
 }
-
 export default withRouter(App)

@@ -7,7 +7,8 @@ class Signup extends React.Component {
   state ={
     username: "",
     email: "",
-    password: ""
+    password: "",
+    errors: []
   }
   // state ={
   //   logIn:false,
@@ -39,6 +40,7 @@ class Signup extends React.Component {
     e.preventDefault()
 
     fetch("http://localhost:3000/users", {
+    // fetch("https://dis-or-dat-poll-app.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -55,6 +57,7 @@ class Signup extends React.Component {
             errors: data.errors
           })
         } else {
+          this.props.history.push("/main")
           this.props.loginUser(data.token, data.user_id)
         }
       })
@@ -84,8 +87,29 @@ render(){
     </Form.Field>
     <Button type='submit' positive>Submit</Button>
   </Form>
+    {
+      this.state.errors
+      ?
+      this.state.errors.map(error => {
+        return <div class="ui negative message">
+          <i class="close icon"></i>
+          <div class="header">
+            Oops! Something went wrong...
+          </div>
+          <p>{ error }</p>
+        </div>
+      })
+      :
+      console.log('No Errors')
+    }
   </div>
   )
 }
 }
 export default withRouter(Signup)
+
+
+
+  
+    
+  

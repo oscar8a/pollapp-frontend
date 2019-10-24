@@ -16,9 +16,10 @@ class PollResults extends React.Component{
   }
 
   fetchData = () => {
-    const ID = this.props.match.params.id
+    const pollURL = window.location.pathname;
 
-    fetch(`http://localhost:3000/polls/${ID}`)
+    fetch(`http://localhost:3000${pollURL}`)
+    // fetch(`https://dis-or-dat-poll-app.herokuapp.com/polls/${ID}`)
     .then(res => res.json())
     .then(data => {
     console.group(data)
@@ -48,11 +49,11 @@ class PollResults extends React.Component{
       return (
         this.state.loading
         ?
-        <div>
+        <div className='profilecenter maincontainer'>
         <ReactLoading type={'balls'} color={'blue'} height={'20%'} width={'20%'} />
         </div>
         :
-        <div className='profilecenter'>
+        <div className='profilecenter maincontainer'>
         <Plot
         data={
           [{

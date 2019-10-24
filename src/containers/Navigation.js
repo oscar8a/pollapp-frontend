@@ -33,6 +33,9 @@ export default class Navigation extends Component {
             active={activeItem === 'logout'}
             onClick={ this.props.logOutUser }
           />
+          <Menu.Item
+            name='DIS OR DATTTT'
+          />
         </Menu>
       </Segment>
     )
