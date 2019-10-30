@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
+import { config } from '../Constants'
 
 class Voting extends React.Component {
 
@@ -18,8 +19,9 @@ class Voting extends React.Component {
   
   castVote = (e) => {
     e.preventDefault()
+    const url = config.url.API_URL
    
-    fetch("http://localhost:3000/votes", {
+    fetch(`${url}votes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

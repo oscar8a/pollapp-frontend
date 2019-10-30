@@ -2,6 +2,7 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import ReactLoading from 'react-loading';
 import { withRouter } from 'react-router-dom';
+import { config } from '../Constants'
 
 class PollResults extends React.Component{
 
@@ -17,8 +18,9 @@ class PollResults extends React.Component{
 
   fetchData = () => {
     const pollURL = window.location.pathname;
+    const APIurl = config.url.API_URL
 
-    fetch(`http://localhost:3000${pollURL}`)
+    fetch(`${APIurl}${pollURL}`)
     // fetch(`https://dis-or-dat-poll-app.herokuapp.com/polls/${ID}`)
     .then(res => res.json())
     .then(data => {

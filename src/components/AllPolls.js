@@ -1,6 +1,7 @@
 import React from 'react';
 import PollCard from '../components/PollCard';
 import { withRouter } from 'react-router-dom';
+import { config } from '../Constants'
 
 class AllPolls extends React.Component{
 
@@ -12,10 +13,11 @@ class AllPolls extends React.Component{
   componentDidMount(){
     //Doesn't need token for now...
     const token  = localStorage.token
+    const url = config.url.API_URL
 
     if (localStorage.token){
 
-    fetch("http://localhost:3000/polls", {
+    fetch(`${url}polls`, {
     // fetch("https://dis-or-dat-poll-app.herokuapp.com/polls", {
       headers: {
         "Authorization": token

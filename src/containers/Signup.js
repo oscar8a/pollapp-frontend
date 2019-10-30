@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
+import { config } from '../Constants'
 
 class Signup extends React.Component {
 
@@ -30,8 +31,10 @@ class Signup extends React.Component {
 
   signupSubmit = e => {
     e.preventDefault()
+    const url = config.url.API_URL
 
-    fetch("http://localhost:3000/users", {
+    fetch(`${url}users`, {
+    // fetch("http://localhost:3000/users", {
     // fetch("https://dis-or-dat-poll-app.herokuapp.com/users", {
       method: "POST",
       headers: {
