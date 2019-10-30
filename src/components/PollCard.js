@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Card, Icon, Image } from 'semantic-ui-react'
+import { Button, Card, Icon, Image } from 'semantic-ui-react';
 import { withRouter, Link } from 'react-router-dom';
+import { config } from '../Constants';
 
 class PollCard extends React.Component {
 
@@ -20,8 +21,9 @@ class PollCard extends React.Component {
   }
 
   closePoll = (e) => {
+    const url = config.url.API_URL
     
-    fetch(`http://localhost:3000/polls/${this.state.pollID}`, {
+    fetch(`${url}polls/${this.state.pollID}`, {
     // fetch(`https://dis-or-dat-poll-app.herokuapp.com/polls/${this.state.pollID}`, {
       method: "POST",
       headers: {

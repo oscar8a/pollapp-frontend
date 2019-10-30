@@ -1,6 +1,7 @@
 import React from 'react';
 import PollCard from '../components/PollCard';
 import { withRouter, Link } from 'react-router-dom';
+import { config } from '../Constants'
 
 class Profile extends React.Component{
 
@@ -10,11 +11,11 @@ class Profile extends React.Component{
   }
 
   componentDidMount(){
+    const url = config.url.API_URL
 
     if (localStorage.userId){
 
-      fetch(`http://localhost:3000/users/${localStorage.userId}`, {
-      // fetch(`https://dis-or-dat-poll-app.herokuapp.com/users/${localStorage.userId}`, {
+      fetch(`${url}users/${localStorage.userId}`, {
         headers: {
           "Authorization": localStorage.token
         }

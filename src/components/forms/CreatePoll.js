@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
+import { config } from '../../Constants'
 
 class CreatePoll extends React.Component {
 
@@ -20,8 +21,9 @@ class CreatePoll extends React.Component {
   
   addPoll = (e) => {
     e.preventDefault()
+    const url = config.url.API_URL
 
-    fetch("http://localhost:3000/polls", {
+    fetch(`${url}polls`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -41,8 +43,9 @@ class CreatePoll extends React.Component {
   }
 
   addOptionsToPoll = (pollID, optionName) => {
+    const url = config.url.API_URL
 
-    fetch("http://localhost:3000/vote_options", {
+    fetch(`${url}vote_options`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react';
 import { withRouter, Link, Redirect } from 'react-router-dom';
+import { config } from '../Constants'
 
 class Login extends React.Component{
 
@@ -19,8 +20,10 @@ class Login extends React.Component{
 
   loginSubmit = e => {
     e.preventDefault()
+    const url = config.url.API_URL
 
-    fetch("http://localhost:3000/tokens", {
+    fetch(`${url}tokens`, {
+    // fetch("http://localhost:3000/tokens", {
     // fetch("https://dis-or-dat-poll-app.herokuapp.com/tokens", {
       method: "POST",
       headers: {
