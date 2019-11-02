@@ -17,6 +17,14 @@ This is for the Front end part only.
 
 ### Technologies
 
+##Front-End
 - [React](https://reactjs.org/docs/getting-started.html)
 - [Semantic UI React](https://react.semantic-ui.com/)
+
+##Back-End
+- [Ruby on Rails](https://rubyonrails.org)
+- [PostgreSQL](https://www.postgresql.org)
+- Auth using [JWT](https://jwt.io) and [bcrypt ](https://rubygems.org/gems/bcrypt/versions/3.1.12)
+- [Sidekiq](https://sidekiq.org/)
+- [Redis](https://redis.io/)
 
