@@ -25,17 +25,17 @@ You also provide the 2 options you want user to vote on. All users that navigate
 
 ### Features
 
-..* Set up for how many minutes you want your poll to be active for. After the time expires, the poll's status will be changed to in-active and voting will no longer be allowed. The job that takes care of changing the status is run by sidekiq, and queued on a redis server. 
+* Set up for how many minutes you want your poll to be active for. After the time expires, the poll's status will be changed to in-active and voting will no longer be allowed. The job that takes care of changing the status is run by sidekiq, and queued on a redis server. 
 
-..* You are able to see how many votes have been casted in the poll, but you will not be able to see the results until poll is closed. 
+* You are able to see how many votes have been casted in the poll, but you will not be able to see the results until poll is closed. 
 
 
 ### Installation
 First, I will begin with the Back end setup. The repo for that is here: [Back-End Polling App](https://github.com/ozkr8a/pollapp-backend)
 
 Setting up the Rails API:
-1.make sure the database is created by running `rails db:create`
-2. Start up the Rails Server `rails server`
+1. make sure the database is created by running `rails db:create`.
+2. Start up the Rails Server `rails server`.
 
 ### `npm start`
 
