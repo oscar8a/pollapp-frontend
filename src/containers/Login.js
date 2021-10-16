@@ -101,7 +101,7 @@ render(){
         <div class="ui negative message">
         <i class="close icon"></i>
         <div class="header">
-          Oops! Something went wrong...
+          Oops! Something went wrong....
         </div>
         <span>{ error }</span>
         </div>
