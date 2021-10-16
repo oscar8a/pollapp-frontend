@@ -10,12 +10,10 @@
 
 .flex-container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-around;
   padding: 2%;
-}
-
-.ui.card {
-  margin: 2%;
 }
 
 .createpolldiv {

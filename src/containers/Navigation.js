@@ -12,7 +12,7 @@ export default class Navigation extends Component {
     const { activeItem } = this.state
 
     return (
-      <Segment className="ui blue inverted">
+      <Segment id="Navigation" className="ui blue inverted">
         <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
         <Menu inverted secondary>
           <Menu.Item
